@@ -1,6 +1,4 @@
 <Project>
-  <Import Project="..\..\buildTransitive\Devlooped.Sponsors.targets" Condition="Exists('..\..\buildTransitive\Devlooped.Sponsors.targets')"/>
-
   <ItemGroup>
     <CompilerVisibleProperty Include="ThisAssemblyNamespace" />
     <CompilerVisibleProperty Include="ThisAssemblyVisibility" />

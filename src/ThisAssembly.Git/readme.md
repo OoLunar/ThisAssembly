@@ -1,6 +1,5 @@
-<!-- include https://github.com/devlooped/.github/raw/main/sponsorlinkr.md -->
 <!-- #git -->
-This package generates a static `ThisAssembly.Git` class with constants 
+This package generates a static `ThisAssembly.Git` class with constants
 for the following Git properties from the current project:
 
 * Commit
@@ -12,32 +11,32 @@ for the following Git properties from the current project:
 ![](https://raw.githubusercontent.com/devlooped/ThisAssembly/main/img/ThisAssembly.Git.png)
 
 This package relies on your project's installed
-[Microsoft.SourceLink.*](https://www.nuget.org/packages?q=Microsoft.SourceLink) 
-package reference according to your specific Git-based source control server 
+[Microsoft.SourceLink.*](https://www.nuget.org/packages?q=Microsoft.SourceLink)
+package reference according to your specific Git-based source control server
 (such as GitHub, Azure DevOps, BitBucket, etc).
 
-> NOTE: from .NET 8 SDK onwards, SourceLink is included by default, so you 
+> NOTE: from .NET 8 SDK onwards, SourceLink is included by default, so you
 > don't need to add it manually.
 
-The `Branch` property is populated from environment variables provided 
-by the currently supported CI systems: GitHub Actions, Azure DevOps, 
+The `Branch` property is populated from environment variables provided
+by the currently supported CI systems: GitHub Actions, Azure DevOps,
 AppVeyor, TeamCity, Travis CI, Circle CI, GitLab CI, Buddy, and Jenkins.
 
-Whenever the CI system provides a pull request number, the branch name is 
-`pr[NUMBER]`, such as `pr123`. This makes it easy to use it as a semver 
+Whenever the CI system provides a pull request number, the branch name is
+`pr[NUMBER]`, such as `pr123`. This makes it easy to use it as a semver
 metadata label.
 
-> Note: by default, the values of these constants are populated during 
-"real" builds (that is, not IDE/design-time builds used to populate 
-intellisense). This is to avoid negatively affecting the editor's 
-performance. This means, however, that the properties will seem to 
-always be empty when inspecting them in the IDE (although never at 
-run-time). If you want to force population of these values for 
-design-time builds, set the `EnableSourceControlManagerQueries` property to `true`. 
-This property is defined and documented by 
+> Note: by default, the values of these constants are populated during
+"real" builds (that is, not IDE/design-time builds used to populate
+intellisense). This is to avoid negatively affecting the editor's
+performance. This means, however, that the properties will seem to
+always be empty when inspecting them in the IDE (although never at
+run-time). If you want to force population of these values for
+design-time builds, set the `EnableSourceControlManagerQueries` property to `true`.
+This property is defined and documented by
 [dotnet/sourcelink](https://github.com/dotnet/sourcelink/blob/main/src/SourceLink.Common/build/Microsoft.SourceLink.Common.props#L14).
 
-At the MSBuild level, targets can take a dependency on the provided 
+At the MSBuild level, targets can take a dependency on the provided
 `InitializeGitInformation` target, which sets the equivalent properties
 named:
 
@@ -47,13 +46,13 @@ named:
 * RepositoryUrl
 * RepositoryBranch
 
-The names of these properties were chosen on purpose to match the 
-properties used by [nuget pack](https://learn.microsoft.com/en-us/nuget/reference/msbuild-targets#pack-target) 
+The names of these properties were chosen on purpose to match the
+properties used by [nuget pack](https://learn.microsoft.com/en-us/nuget/reference/msbuild-targets#pack-target)
 and [nugetizer](https://github.com/devlooped/nugetizer) to populate
-the relevant package metadata. 
+the relevant package metadata.
 
-So if you have a GitHub repository, installing these three packages 
-will ensure you have the proper metadata out of the box and the simplest 
+So if you have a GitHub repository, installing these three packages
+will ensure you have the proper metadata out of the box and the simplest
 packaging experience possible:
 
 ```xml
@@ -72,5 +71,4 @@ packaging experience possible:
 
 <!-- #git -->
 <!-- include ../visibility.md -->
-<!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
 <!-- exclude -->

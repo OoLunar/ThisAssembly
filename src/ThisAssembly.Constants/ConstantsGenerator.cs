@@ -4,13 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using Devlooped.Sponsors;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
 using Scriban;
-using static Devlooped.Sponsors.SponsorLink;
-using Resources = Devlooped.Sponsors.Resources;
 
 namespace ThisAssembly;
 
@@ -52,7 +49,7 @@ public class ConstantsGenerator : IIncrementalGenerator
                     {
                         // root should be the first part up to the first dot of name
                         // and name should be the rest
-                        // note we only do this if there's an actual dot, otherwise, we 
+                        // note we only do this if there's an actual dot, otherwise, we
                         // just leave the root's default of Constants
                         root = parts[0];
                         name = parts[1];
@@ -71,16 +68,14 @@ public class ConstantsGenerator : IIncrementalGenerator
             .Combine(context.ParseOptionsProvider);
 
         var inputs = files.Combine(right);
-        // this is required to ensure status is registered properly independently of analyzer runs. 
-        var options = context.GetStatusOptions();
 
-        context.RegisterSourceOutput(inputs.Combine(options), GenerateConstant);
+        context.RegisterSourceOutput(inputs, GenerateConstant);
     }
 
     void GenerateConstant(SourceProductionContext spc,
-        (((string name, string value, string? type, string? comment, string root, string rootComment), ((string? ns, string? visibility), ParseOptions parse)), StatusOptions options) args)
+        ((string name, string value, string? type, string? comment, string root, string rootComment), ((string? ns, string? visibility), ParseOptions parse)) args)
     {
-        var (((name, value, type, comment, root, rootComment), ((ns, visibility), parse)), options) = args;
+        var ((name, value, type, comment, root, rootComment), ((ns, visibility), parse)) = args;
         var cs = (CSharpParseOptions)parse;
 
         if (!string.IsNullOrWhiteSpace(ns) &&
@@ -107,23 +102,9 @@ public class ConstantsGenerator : IIncrementalGenerator
         if ((int)cs.LanguageVersion >= 1100)
             model.RawStrings = true;
 
-        if (IsEditor)
-        {
-            var status = Diagnostics.GetOrSetStatus(options);
-            if (status == SponsorStatus.Unknown || status == SponsorStatus.Expired)
-            {
-                model.Warn = string.Format(CultureInfo.CurrentCulture, Resources.Editor_Disabled, Funding.Product, Funding.HelpUrl);
-                model.Remarks = Resources.Editor_DisabledRemarks;
-            }
-            else if (status == SponsorStatus.Grace && Diagnostics.TryGet() is { } grace && grace.Properties.TryGetValue(nameof(SponsorStatus.Grace), out var days))
-            {
-                model.Remarks = string.Format(CultureInfo.CurrentCulture, Resources.Editor_GraceRemarks, days);
-            }
-        }
-
         var output = template.Render(model, member => member.Name);
 
-        // Apply formatting since indenting isn't that nice in Scriban when rendering nested 
+        // Apply formatting since indenting isn't that nice in Scriban when rendering nested
         // structures via functions.
         if (parse.Language == LanguageNames.CSharp)
         {

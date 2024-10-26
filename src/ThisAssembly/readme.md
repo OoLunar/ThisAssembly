@@ -1,4 +1,3 @@
-<!-- include https://github.com/devlooped/.github/raw/main/sponsorlinkr.md -->
 <!-- include ../../readme.md#meta -->
 
 ## ThisAssembly.AssemblyInfo
@@ -23,5 +22,4 @@
 <!-- include ../ThisAssembly.Strings/readme.md#strings -->
 
 <!-- include ../visibility.md -->
-<!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
 <!-- exclude -->

@@ -18,11 +18,6 @@
     </Description>
   </PropertyGroup>
 
-  <PropertyGroup Label="SponsorLink">
-    <CustomAfterMicrosoftCSharpTargets>$(MSBuildThisFileDirectory)..\SponsorLink\SponsorLink.Analyzer.targets</CustomAfterMicrosoftCSharpTargets>
-    <FundingPackageId>ThisAssembly;$(PackageId)</FundingPackageId>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="NuGetizer" Version="1.2.2" />
 
@@ -39,9 +34,5 @@
   <ItemGroup>
     <EmbeddedResource Include="@(Compile -&gt; WithMetadataValue('Filename', 'EmbeddedResource'))" />
   </ItemGroup>
-
-  <Target Name="VerifySponsorLink" AfterTargets="Build">
-    <Error Condition="'$(SponsorLinkImported)' != 'true'" Text="SponsorLink was not imported." />
-  </Target>
 
 </Project>

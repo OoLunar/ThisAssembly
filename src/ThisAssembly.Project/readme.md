@@ -1,7 +1,6 @@
-<!-- include https://github.com/devlooped/.github/raw/main/sponsorlinkr.md -->
 <!-- #project -->
-This package generates a static `ThisAssembly.Project` class with public 
-constants exposing project properties that have been opted into this mechanism by adding 
+This package generates a static `ThisAssembly.Project` class with public
+constants exposing project properties that have been opted into this mechanism by adding
 them as `ProjectProperty` MSBuild items in the project file, such as:
 
 ```xml
@@ -19,5 +18,4 @@ them as `ProjectProperty` MSBuild items in the project file, such as:
 
 <!-- #project -->
 <!-- include ../visibility.md -->
-<!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
 <!-- exclude -->

@@ -37,12 +37,6 @@ C#:
     </Description>
   </PropertyGroup>
 
-  <PropertyGroup Label="SponsorLink">
-    <CustomAfterMicrosoftCSharpTargets>$(MSBuildThisFileDirectory)..\SponsorLink\SponsorLink.Analyzer.targets</CustomAfterMicrosoftCSharpTargets>
-    <!-- We also bring in the additional packages that just customize ThisAssembly.Constants -->
-    <FundingPackageId>ThisAssembly;ThisAssembly.Git;ThisAssembly.Metadata;$(PackageId)</FundingPackageId>
-  </PropertyGroup>
-
   <ItemGroup>
     <None Remove="CSharp.sbntxt" />
     <EmbeddedResource Include="CSharp.sbntxt" CopyToOutputDirectory="PreserveNewest" />
@@ -58,10 +52,6 @@ C#:
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" Pack="false" />
     <PackageReference Include="PolySharp" Version="1.14.1" PrivateAssets="All" />
   </ItemGroup>
-
-  <Target Name="VerifySponsorLink" AfterTargets="Build">
-    <Error Condition="'$(SponsorLinkImported)' != 'true'" Text="SponsorLink was not imported." />
-  </Target>
 
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
 

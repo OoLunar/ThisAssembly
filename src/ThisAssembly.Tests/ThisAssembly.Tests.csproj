@@ -98,17 +98,7 @@
     <Compile Include="..\ThisAssembly.Strings\Model.cs" Link="Model.cs" />
   </ItemGroup>
 
-  <Import Project="..\SponsorLink\SponsorLink\buildTransitive\Devlooped.Sponsors.targets" />
   <Import Project="..\*\ThisAssembly*.targets" />
-  <Import Project="..\SponsorLink\SponsorLink.Analyzer.Tests.targets" />
-
-  <!-- Force immediate reporting of status, no install-time grace period -->
-  <PropertyGroup>
-    <SponsorLinkNoInstallGrace>true</SponsorLinkNoInstallGrace>
-  </PropertyGroup>
-  <ItemGroup>
-    <CompilerVisibleProperty Include="SponsorLinkNoInstallGrace" />
-  </ItemGroup>
 
   <!-- Simulate SL_CollectDependencies -->
   <PropertyGroup>

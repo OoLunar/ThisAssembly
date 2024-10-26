@@ -1,6 +1,4 @@
 <Project>
-  <Import Project="..\..\buildTransitive\Devlooped.Sponsors.targets" Condition="Exists('..\..\buildTransitive\Devlooped.Sponsors.targets')"/>
-
   <ItemGroup>
     <!-- Make sure we're always private to the referencing project. 
          Prevents analyzers from "flowing out" of the referencing project. -->

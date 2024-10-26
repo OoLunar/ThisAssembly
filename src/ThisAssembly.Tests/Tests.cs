@@ -5,8 +5,6 @@ using Xunit;
 using Xunit.Abstractions;
 //using ThisAssembly = ThisAssemblyTests
 
-[assembly: SuppressMessage("SponsorLink", "SL04")]
-
 namespace ThisAssemblyTests;
 
 /// <summary />
